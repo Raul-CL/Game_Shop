@@ -1,0 +1,82 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: "Fredoka", sans-serif;
+    
+}
+body{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #1b2838;
+}
+#title{
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+    color: #fefefe;
+}
+#gameCardsContainer{
+    margin-top: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 98%;    
+}
+.gameCard{
+    width: 30%;
+    color: #c7d5e0;
+    border-radius: 5%;
+    background-color: #396583;
+    background-image: url('https://store.akamai.steamstatic.com/public/images/v6/home/background_spotlight.jpg');
+    background-size: cover;    
+    padding: .5%;
+    margin-top: 3%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.gameCard__thumbnail{
+    width: 100%;
+    border-radius: 5%;
+}
+.gameCard__title{
+    width: 100%;
+    font-size: 1.5em;
+    text-align: center;
+}
+.gameCard__description{
+    font-size: 1em;
+    text-align: justify;
+    width: 100%;
+}
+.gameCard__platform,.gameCard__genre{   
+    width: 40%;
+}
+.gameCard__price{
+    text-align: center;
+    color: #a4d007;
+    background-color: #4c6b22;
+    
+}
+#errrNoFound{
+    font-size: 3em;
+    text-align: center;
+    color: #ff6600;
+}
+#btnAddToCar{
+    border-radius: 1em;
+    padding: .5em;
+    margin: auto;
+    background: linear-gradient( to right, #75b022 5%, #588a1b 95%);
+    border: none;   
+    cursor: pointer;
+    color: #d2efa9;
+    text-shadow: 1px 1px 0px rgba( 0, 0, 0, 0.3 );
+    
+}
+#btnAddToCar:hover{
+    background: red ;
+    background: linear-gradient( to right, #8ed629 5%, #6aa621 95%);
+}
+
+
