@@ -119,7 +119,7 @@ body{
     position: absolute;
     top: -2%;
     right: 37%;
-
+    cursor: pointer;
 }
 #loginModal h3{
     font-size: 2em;    
