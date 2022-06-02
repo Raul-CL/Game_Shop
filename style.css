@@ -1,3 +1,14 @@
+/*!!!!!!!!!!!!! ANIMATION       !!!!!!!!!!!!!!!!*/
+.fadeInOut {
+    display: inline !important;
+    animation: fadeInOut 2s;
+  }
+@keyframes fadeInOut {
+  0% {opacity:0;}
+  50% {opacity:1;}
+  100% {opacity:0;}
+}
+/*!!!!!!!!!!!!! ANIMATION       !!!!!!!!!!!!!!!!*/
 * {
     margin: 0%;
     padding: 0%;
@@ -79,7 +90,6 @@ body{
     background: linear-gradient( to right, #8ed629 5%, #6aa621 95%);
 }
 
-
 #loginModal{
     background-color: #fefefe;
     margin: 1em auto;
@@ -91,14 +101,13 @@ body{
     color: #fff;
 }
 #loginModal h3{
-    font-size: 2em;
-    
+    font-size: 2em;    
 }
 #loginModal label{
     font-size: 1em;
     margin-top: .5em;
 }
-#loginAccount{
+#btnLoginAccount{
     font-size: 1em;
     margin-top: 1em;
     border-radius: 1em;
@@ -108,8 +117,9 @@ body{
     background: linear-gradient( to right, #47bfff 5%, #1a44c2 60%);
     color: #fff;
 }
-#loginAccount:hover{
+#btnLoginAccount:hover{
     box-shadow: 2px 2px 15px rgba(107, 107, 107, 0.5);
     
 }
+
 

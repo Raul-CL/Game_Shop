@@ -1,4 +1,4 @@
-/* //! Inicio Validacion
+ //! Inicio Validacion
 //? Array con cuentas registradas
 const Users = [{
   account : "raul.corral",
@@ -13,32 +13,51 @@ const Users = [{
 
 //? Funcion para validar si la cuenta y el usuario existen en el array Users
 let userValidation = () => {
-  let userLogin = prompt("Introducir cuenta cuenta: admin, pass: 123").toLowerCase()
-  let accountValidation = Users.filter(account => account.account == userLogin)
+  //let userLogin = prompt("Introducir cuenta cuenta: admin, pass: 123").toLowerCase()
+  let userAccount = document.querySelector("#userAccount").value
+  let userPassword = document.querySelector("#userPassword").value
+  console.log(userAccount,userPassword)
+  let accountValidation = Users.filter(account => account.account == userAccount)
   console.log(accountValidation)
   if (accountValidation.length === 0 ) {
     console.log("Cuenta incorrecta")
+    accountNoFound()
     return false}
   else{
-    if(userLogin == accountValidation[0].account){
+    if(userAccount == accountValidation[0].account){
       console.log("Cuenta correcta")
-      userLogin = prompt("Introducir contraseña")
-      if(userLogin === accountValidation[0].password){
+      if(userPassword === accountValidation[0].password){
         console.log("Contraseña correcta puede entrar")
+        //todo agregar funcion para ocultar modal y insertar datos en navbar
         return true
       }else {
         console.log("Error contraseña incorrecta")
+        passwordtNoFound()
         return false
       }
     }else console.log("Error")
   } 
 }
 
-//? Ciclo la funcion hasta que el valor sea true para poder ingresar a la pagina
-while(userValidation() === false){
-  userValidation()
+const accountNoFound = ()=>{
+  let errorAcount = document.querySelector("#errorAccount")
+  errorAcount.className = 'fadeInOut'
+  setTimeout(()=>{
+    errorAcount.className = ''
+  },1500)
 }
- */ //! Fin validacion
+
+const passwordtNoFound = ()=>{
+  let errorPassword = document.querySelector("#errorPassword")
+  errorPassword.className = 'fadeInOut'
+  setTimeout(()=>{
+    errorPassword.className = ''
+  },1500)
+}
+
+//? Evento cuando hago click inicio sesion
+const btnLoginAccount = document.querySelector("#btnLoginAccount")
+btnLoginAccount.addEventListener('click',userValidation)
 
 
 
