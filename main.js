@@ -198,6 +198,9 @@ const applyFilter = ()=>{
     filterGames = gameList.filter(game => game.platform == platformFilter)
     setGameCards(filterGames)
     if(filterGames.length < 1) gamesNoFound() 
+  }else if(genreFilter == "0" && platformFilter == "0"){
+    filterGames = gameList
+    setGameCards(filterGames)
   }
   console.log(filterGames)  
   
