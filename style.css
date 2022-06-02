@@ -80,3 +80,36 @@ body{
 }
 
 
+#loginModal{
+    background-color: #fefefe;
+    margin: 1em auto;
+    display: flex;
+    border-radius: 2em;
+    padding: 2em;
+    flex-direction: column;
+    background-color: #212429;
+    color: #fff;
+}
+#loginModal h3{
+    font-size: 2em;
+    
+}
+#loginModal label{
+    font-size: 1em;
+    margin-top: .5em;
+}
+#loginAccount{
+    font-size: 1em;
+    margin-top: 1em;
+    border-radius: 1em;
+    background: transparent;
+    cursor: pointer;
+    text-shadow: 1px 1px 0px rgb(0 0 0 / 30%);
+    background: linear-gradient( to right, #47bfff 5%, #1a44c2 60%);
+    color: #fff;
+}
+#loginAccount:hover{
+    box-shadow: 2px 2px 15px rgba(107, 107, 107, 0.5);
+    
+}
+
