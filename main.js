@@ -11,6 +11,26 @@ const Users = [{
   password: "123"
 }]
 
+//? Abrir modal para iniciar sesion
+let openModal = () => {
+  const loginBtn = document.querySelector("#login")
+  const loginModal = document.querySelector("#modalContainer")
+  loginBtn.addEventListener('click',()=>{
+    loginModal.style.display = ""
+  })
+}
+let closeModal = () => {
+  const clsLogModal = document.querySelector("#closeLoginModal")
+  const loginModal = document.querySelector("#modalContainer")
+  clsLogModal.addEventListener('click',()=>{
+    loginModal.style.display = "none"
+  })
+}
+openModal()
+closeModal()
+
+
+
 //? Funcion para validar si la cuenta y el usuario existen en el array Users
 let userValidation = () => {
   //let userLogin = prompt("Introducir cuenta cuenta: admin, pass: 123").toLowerCase()
