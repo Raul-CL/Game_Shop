@@ -24,6 +24,21 @@ body{
 main{
     margin-top: 6em;
 }
+
+/* !MODAL DE LOGIN */
+.btn-secondary{
+    background: linear-gradient( to right, #a8a8a8 5%, #d68b00 60%);
+}
+.btn-primary{
+    background: linear-gradient( to right, #47bfff 5%, #1a44c2 60%);
+}
+#btnLoginAccount:hover,#btnLoginAccount:hover{
+    box-shadow: 2px 2px 15px rgba(107, 107, 107, 0.5);
+}
+#userAccount{
+    border: red !important;
+}
+
 /*! GAME CARDS  */
 
 #gameCardsContainer{
@@ -88,65 +103,6 @@ main{
 #btnAddToCar:hover{
     background: red ;
     background: linear-gradient( to right, #8ed629 5%, #6aa621 95%);
-}
-/* !MODAL DE LOGIN */
-#modalContainer{
-    position: absolute;
-    width: 100%;
-    top: 20%;
-    background: rgba(0, 0, 0, 0.4);
-    
-    
-}
-#loginModal{
-    box-shadow: 4px 4px 16px 0 rgba(136, 141, 143, 0.15);
-    background-color: #fefefe;
-    display: flex;
-    border-radius: 2em;
-    padding: 2em;
-    flex-direction: column;
-    background-color: #212429;
-    color: #fff;
-    width: 25%;
-    margin: 0 auto;    
-}
-#loginModal:hover{
-    box-shadow: 4px 4px 16px 0 rgba(136, 141, 143, 0.25);
-}
-#closeLoginModal{
-    font-size: 2em;
-    background-color: red;
-    width: 1em;
-    text-align: center;
-    border-radius: 1.5em;
-    position: absolute;
-    top: -2%;
-    right: 37%;
-    cursor: pointer;
-}
-#loginModal h3{
-    font-size: 2em;    
-}
-#loginModal label{
-    font-size: 1em;
-    margin-top: .5em;
-}
-#btnLoginAccount{
-    font-size: 1em;
-    margin-top: 1em;
-    border-radius: 1em;
-    background: transparent;
-    cursor: pointer;
-    text-shadow: 1px 1px 0px rgb(0 0 0 / 30%);
-    background: linear-gradient( to right, #47bfff 5%, #1a44c2 60%);
-    color: #fff;
-}
-.btn-primary{
-    background: linear-gradient( to right, #47bfff 5%, #1a44c2 60%);
-}
-#btnLoginAccount:hover{
-    box-shadow: 2px 2px 15px rgba(107, 107, 107, 0.5);
-    
 }
 
 

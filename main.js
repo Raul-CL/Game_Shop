@@ -1,3 +1,6 @@
+
+
+
  //! Inicio Validacion
 //? Array con cuentas registradas
 const Users = [{
@@ -11,29 +14,8 @@ const Users = [{
   password: "123"
 }]
 
-//? Abrir modal para iniciar sesion
-let openModal = () => {
-  const loginBtn = document.querySelector("#login")
-  const loginModal = document.querySelector("#modalContainer")
-  loginBtn.addEventListener('click',()=>{
-    loginModal.style.display = ""
-  })
-}
-let closeModal = () => {
-  const clsLogModal = document.querySelector("#closeLoginModal")
-  const loginModal = document.querySelector("#modalContainer")
-  clsLogModal.addEventListener('click',()=>{
-    loginModal.style.display = "none"
-  })
-}
-openModal()
-closeModal()
-
-
-
 //? Funcion para validar si la cuenta y el usuario existen en el array Users
 let userValidation = () => {
-  //let userLogin = prompt("Introducir cuenta cuenta: admin, pass: 123").toLowerCase()
   let userAccount = document.querySelector("#userAccount").value
   let userPassword = document.querySelector("#userPassword").value
   console.log(userAccount,userPassword)
@@ -41,38 +23,19 @@ let userValidation = () => {
   console.log(accountValidation)
   if (accountValidation.length === 0 ) {
     console.log("Cuenta incorrecta")
-    accountNoFound()
     return false}
   else{
     if(userAccount == accountValidation[0].account){
       console.log("Cuenta correcta")
       if(userPassword === accountValidation[0].password){
         console.log("Contraseña correcta puede entrar")
-        //todo agregar funcion para ocultar modal y insertar datos en navbar
         return true
       }else {
         console.log("Error contraseña incorrecta")
-        passwordtNoFound()
         return false
       }
     }else console.log("Error")
   } 
-}
-
-const accountNoFound = ()=>{
-  let errorAcount = document.querySelector("#errorAccount")
-  errorAcount.className = 'fadeInOut'
-  setTimeout(()=>{
-    errorAcount.className = ''
-  },1500)
-}
-
-const passwordtNoFound = ()=>{
-  let errorPassword = document.querySelector("#errorPassword")
-  errorPassword.className = 'fadeInOut'
-  setTimeout(()=>{
-    errorPassword.className = ''
-  },1500)
 }
 
 //? Evento cuando hago click inicio sesion
@@ -213,7 +176,6 @@ const getFilters = () => {
 }
 
 //? Funcion para mostrar mensaje de error
-//todo Agregar modal 
 const gamesNoFound = ()=>{
   let cardContainer = document.querySelector("#gameCardsContainer")
   cardContainer.innerHTML = `<p id="errrNoFound">No existen juegos con esas caracteristicas</p>`

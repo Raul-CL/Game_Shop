@@ -20,14 +20,16 @@
             <div class="container-fluid col-4">
               <h1 class="fs-1 fw-bolder text-warning">Game Store</h1>
             </div>
-            <div class="d-grid gap-2 d-md-flex col-2">
-                <button class="btn btn-primary me-md-2" id="login" type="button">Sign in</button>
+            <div class="d-grid gap-2 d-md-flex col-3">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign in</button>
                 <button class="btn btn-primary" id="signin" type="button">Check in</button>
             </div>
         </nav>
     </header>
     
     <main>
+        <!--! FILTROS  -->
+        <!--TODO DEFINIR FILTROS STYLE  -->
         <div class="container container__filter">
             <section id="filters">
                 <select name="" id="genreFilter">
@@ -38,7 +40,54 @@
                 </select>
             </section>
         </div>
-        
+        <!--! /FILTROS  -->
+
+        <!--! MODAL  -->
+        <!-- <div id="modalContainer" style="display: none;">
+            <article id="loginModal" >
+                <h3>Iniciar sesion</h3>
+                <i class="fa-solid fa-xmark" id="closeLoginModal"></i>
+                <label for="userAccount">Nombre de cuenta:</label>
+                <input type="text" name="userAccount" id="userAccount" placeholder="">
+                <label for="userPassword" >Contraseña:</label>
+                <input type="password" name="userPassword" id="userPassword">
+                <button id="btnLoginAccount">Iniciar sesión</button>
+                <label for="userAccount" id="errorAccount" style="display:none">Cuenta incorrecta..</label>
+                <label for="userPassword" id="errorPassword" style="display:none">Contraseña incorrecta...</label>
+            </article>
+        </div> -->
+        <!--! /MODAL  -->
+
+        <!--! BS MODAL  -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content bg-dark">
+                <div class="modal-header">
+                  <h5 class="modal-title text-light" id="exampleModalLabel">Iniciar sesion</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body ">
+                    <form class="needs-validation" id="loginForm" novalidate>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control " id="userAccount" placeholder="name@example.com" required>
+                            <label for="userAccount" class="form-label">Nombre de cuenta:</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="userPassword" placeholder="Password" required>
+                            <label for="userPassword" class="form-label">Contraseña:</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnLoginAccount">Iniciar sesion</button>
+                    <button type="button" class="btn btn-secondary" id="btnLoginAccount" data-bs-dismiss="modal">Close</button>  
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        <!--! BS MODAL  -->
+
         <section id="gameCardsContainer">
             <!--!Test Card  -->
             <!-- <article class="gameCard">
@@ -53,19 +102,7 @@
             </article> -->
         </section>
     </main>
-    <div id="modalContainer" style="display: none;">
-        <article id="loginModal" >
-            <h3>Iniciar sesion</h3>
-            <i class="fa-solid fa-xmark" id="closeLoginModal"></i>
-            <label for="userAccount">Nombre de cuenta:</label>
-            <input type="text" name="userAccount" id="userAccount" placeholder="">
-            <label for="userPassword" >Contraseña:</label>
-            <input type="password" name="userPassword" id="userPassword">
-            <button id="btnLoginAccount">Iniciar sesión</button>
-            <label for="userAccount" id="errorAccount" style="display:none">Cuenta incorrecta..</label>
-            <label for="userPassword" id="errorPassword" style="display:none">Contraseña incorrecta...</label>
-        </article>
-    </div>
+    
     
     
     <!--?JS Bootstrap  -->
