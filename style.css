@@ -21,13 +21,11 @@ body{
     flex-wrap: wrap;
     background-color: #1b2838;
 }
-/*! GAME CARDS  */
-#title{
-    width: 100%;
-    text-align: center;
-    font-size: 3em;
-    color: #fefefe;
+main{
+    margin-top: 6em;
 }
+/*! GAME CARDS  */
+
 #gameCardsContainer{
     margin-top: 2%;
     display: flex;
@@ -133,7 +131,7 @@ body{
     font-size: 1em;
     margin-top: .5em;
 }
-#btnLoginAccount,#login,#signin{
+#btnLoginAccount{
     font-size: 1em;
     margin-top: 1em;
     border-radius: 1em;
@@ -142,6 +140,9 @@ body{
     text-shadow: 1px 1px 0px rgb(0 0 0 / 30%);
     background: linear-gradient( to right, #47bfff 5%, #1a44c2 60%);
     color: #fff;
+}
+.btn-primary{
+    background: linear-gradient( to right, #47bfff 5%, #1a44c2 60%);
 }
 #btnLoginAccount:hover{
     box-shadow: 2px 2px 15px rgba(107, 107, 107, 0.5);
