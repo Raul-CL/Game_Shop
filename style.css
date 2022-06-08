@@ -35,8 +35,9 @@ main{
 #btnLoginAccount:hover,#btnLoginAccount:hover{
     box-shadow: 2px 2px 15px rgba(107, 107, 107, 0.5);
 }
-#userAccount{
-    border: red !important;
+
+.colored-toast.swal2-icon-success {
+    background-color: #a4d007 !important;
 }
 
 /*! GAME CARDS  */

@@ -14,24 +14,47 @@ const Users = [{
   password: "123"
 }]
 
+//? Mensaje sweet alert, para error
+const msjErrorSweetAlert =(titulo,mensaje,icon) => {
+  return {
+          title:titulo,
+          text:mensaje,
+          icon:icon,
+          background: '#212529',
+          color: '#ffffff',
+          timer:1000  ,
+          confirmButtonColor: '#3085d6',
+          showConfirmButton: false,
+        }}
+
 //? Funcion para validar si la cuenta y el usuario existen en el array Users
 let userValidation = () => {
   let userAccount = document.querySelector("#userAccount").value
   let userPassword = document.querySelector("#userPassword").value
-  console.log(userAccount,userPassword)
+  let loginModalClose = document.querySelector("#loginModalClose")
+  /* console.log(userAccount,userPassword) */
   let accountValidation = Users.filter(account => account.account == userAccount)
-  console.log(accountValidation)
+  /* console.log(accountValidation) */
   if (accountValidation.length === 0 ) {
-    console.log("Cuenta incorrecta")
-    return false}
+    /* console.log("Cuenta incorrecta") */
+    swal.fire(msjErrorSweetAlert("Cuenta incorrecta","Intente de nuevo","error"))
+    return false
+  }
   else{
     if(userAccount == accountValidation[0].account){
-      console.log("Cuenta correcta")
+      //console.log("Cuenta correcta")
       if(userPassword === accountValidation[0].password){
-        console.log("Contraseña correcta puede entrar")
-        return true
+        //console.log("Contraseña correcta puede entrar")
+        swal.fire(msjErrorSweetAlert("Exito","Cuenta y contraseña correcta","success"))
+        setTimeout(() => {
+          loginModalClose.click()
+        }, 1200);
+        //todo Se agregara funcion para cambiar botones de login por datos de usuario
+        //console.log([userAccount,userPassword])
+        return [userAccount,userPassword]
       }else {
-        console.log("Error contraseña incorrecta")
+        /* console.log("Error contraseña incorrecta") */
+        swal.fire(msjErrorSweetAlert("Contraseña incorrecta","Intente de nuevo","error"))
         return false
       }
     }else console.log("Error")
