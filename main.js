@@ -1,6 +1,3 @@
-
-
-
  //! Inicio Validacion
 //? Array con cuentas registradas
 const Users = [{
@@ -49,9 +46,12 @@ let userValidation = () => {
         setTimeout(() => {
           loginModalClose.click()
         }, 1200);
+        removeLoginMenu()
         //todo Se agregara funcion para cambiar botones de login por datos de usuario
         //console.log([userAccount,userPassword])
-        return [userAccount,userPassword]
+        return setLocalStorageAccount([userAccount,userPassword]),
+          getLocalStorageAccount()
+
       }else {
         /* console.log("Error contraseña incorrecta") */
         swal.fire(msjErrorSweetAlert("Contraseña incorrecta","Intente de nuevo","error"))
@@ -64,6 +64,41 @@ let userValidation = () => {
 //? Evento cuando hago click inicio sesion
 const btnLoginAccount = document.querySelector("#btnLoginAccount")
 btnLoginAccount.addEventListener('click',userValidation)
+
+//? Insertando datos de cuenta en local storage
+const setLocalStorageAccount = (account) =>{
+  //console.log(account)
+  localStorage.setItem("account",account[0])
+  localStorage.setItem("password",account[1])
+}
+
+//? Obtener datos de cuenta en local storage
+const getLocalStorageAccount = () =>{
+  let account = localStorage.getItem("account")
+  //console.log(account)
+  return account
+}
+//? Cambiar botones por datos de usuario
+const removeLoginMenu = () =>{
+  const loginMenu = document.querySelector("#loginMenu")
+  setTimeout(() => {
+    loginMenu.classList.add('d-none')
+    setTimeout(() => setLogedMenu() , 100)
+  }, 1200);
+  
+  
+}
+const setLogedMenu = () =>{
+  const logedMenu = document.querySelector("#logedMenu")
+  /* console.log(logedMenu.classList.contains('d-none')) */
+  if(logedMenu.classList.contains('d-none')) {
+    logedMenu.classList.remove('d-none')
+  }
+}
+const removeLogedMenu = () =>{
+  const logedMenu = document.querySelector("#logedMenu")
+  logedMenu.classList.add('d-none')
+}
 
 
 

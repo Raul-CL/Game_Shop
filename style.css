@@ -39,9 +39,17 @@ main{
 .colored-toast.swal2-icon-success {
     background-color: #a4d007 !important;
 }
+/*! LOGED USER  */
+
+.logedMenuIcon{
+    color: #75b022;
+    cursor: pointer;
+    font-size: 2em;
+
+}
+
 
 /*! GAME CARDS  */
-
 #gameCardsContainer{
     margin-top: 2%;
     display: flex;
