@@ -78,6 +78,7 @@ const getLocalStorageAccount = () =>{
   //console.log(account)
   return account
 }
+
 //? Cambiar botones por datos de usuario
 const removeLoginMenu = () =>{
   const loginMenu = document.querySelector("#loginMenu")
@@ -85,9 +86,9 @@ const removeLoginMenu = () =>{
     loginMenu.classList.add('d-none')
     setTimeout(() => setLogedMenu() , 100)
   }, 1200);
-  
-  
 }
+
+//? Cambia botones por menu con carrito e icono de usuario
 const setLogedMenu = () =>{
   const logedMenu = document.querySelector("#logedMenu")
   /* console.log(logedMenu.classList.contains('d-none')) */
@@ -96,12 +97,24 @@ const setLogedMenu = () =>{
   }
   localStorage.setItem("loged","true")
 }
-const removeLogedMenu = () =>{
+
+//? Cierra la sesion del usuario y regresa botones
+const btnLogOut = document.querySelector("#logOut")
+const logOut = () =>{
   const logedMenu = document.querySelector("#logedMenu")
   logedMenu.classList.add('d-none')
+  const loginMenu = document.querySelector("#loginMenu")
+  loginMenu.classList.remove('d-none')
+  removeLocalStorage()
 }
+btnLogOut.addEventListener('click',logOut)
 
-
+//? logOut Local Storage
+const removeLocalStorage = () =>{
+  localStorage.setItem("loged","false")
+  localStorage.removeItem("account")
+  localStorage.removeItem("password")
+}
 
 //? Clase Game
 class Game{
@@ -115,6 +128,7 @@ class Game{
     this.platform = platform 
   }
 }
+
 //? Object Game
 const game1 = new Game(1,"Dauntless",0,"https://www.freetogame.com/g/1/thumbnail.jpg","A free-to-play, co-op action RPG with gameplay similar to Monster Hunter.","MMORPG","Nintendo Switch")
 const game2 = new Game(2,"World of Tanks",250,"https://www.freetogame.com/g/2/thumbnail.jpg","If you like blowing up tanks, with a quick and intense game style you will love this game!","Action","Nintendo Switch")

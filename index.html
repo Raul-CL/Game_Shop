@@ -20,14 +20,26 @@
             <div class="container-fluid col-4">
               <h1 class="fs-1 fw-bolder text-warning">Game Store</h1>
             </div>
-            <section class="d-grid gap-2 d-md-flex col-3" >
-                <div id="loginMenu">
+            <section class="d-grid gap-2 d-md-flex col-4" >
+                <div id="loginMenu" class="">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Sign in</button>
                     <button class="btn btn-primary" id="signin" type="button">Check in</button>
                 </div>
                 <div id="logedMenu" class="d-flex justify-content-evenly w-100 d-none">
-                    <div class="logedMenuIcon"><i class="fa-solid fa-cart-shopping"></i></div>
-                    <div class="logedMenuIcon"><i class="fa-solid fa-user"></i></div>
+                    <div class="dropdown">
+                        <div class="logedMenuIcon dropdown-toggle" id="userCar" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-cart-shopping"></i></div>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userCar">
+                            <li><button class="dropdown-item" type="button">Ver carrito</button></li>
+                            <li><button class="dropdown-item" type="button">Vaciar carrito</button></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <div class="logedMenuIcon dropdown-toggle" id="userIcon" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i></div>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userIcon">
+                            <li><button class="dropdown-item" type="button">Ver perfil</button></li>
+                            <li><button class="dropdown-item" id="logOut" type="button">Cerrar sesion</button></li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </nav>
