@@ -94,6 +94,7 @@ const setLogedMenu = () =>{
   if(logedMenu.classList.contains('d-none')) {
     logedMenu.classList.remove('d-none')
   }
+  localStorage.setItem("loged","true")
 }
 const removeLogedMenu = () =>{
   const logedMenu = document.querySelector("#logedMenu")
