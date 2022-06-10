@@ -1,4 +1,4 @@
- //! Inicio Validacion
+//! Inicio Validacion
 //? Array con cuentas registradas
 const Users = [{
   account : "raul.corral",
@@ -14,21 +14,10 @@ const Users = [{
   email: "admin@gmail.com"
 }]
 
-//? Mensaje sweet alert, para error
-const msjErrorSweetAlert =(titulo,mensaje,icon) => {
-  return {
-          title:titulo,
-          text:mensaje,
-          icon:icon,
-          background: '#212529',
-          color: '#ffffff',
-          timer:1000  ,
-          confirmButtonColor: '#3085d6',
-          showConfirmButton: false,
-        }}
+
 
 //! Funcion para validar si la cuenta y el usuario existen en el array Users
-let userValidation = () => {
+let logIn = () => {
   let userAccount = document.querySelector("#userAccount").value
   let userPassword = document.querySelector("#userPassword").value
   let loginModalClose = document.querySelector("#loginModalClose")
@@ -39,8 +28,7 @@ let userValidation = () => {
     /* console.log("Cuenta incorrecta") */
     swal.fire(msjErrorSweetAlert("Cuenta incorrecta","Intente de nuevo","error"))
     return false
-  }
-  else{
+  }else{
     if(userAccount == accountValidation[0].account){
       //console.log("Cuenta correcta")
       if(userPassword === accountValidation[0].password){
@@ -50,6 +38,7 @@ let userValidation = () => {
           loginModalClose.click()
         }, 1200);
         removeLoginMenu()
+        setloggedMenu()
         //todo Se agregara funcion para cambiar botones de login por datos de usuario
         //console.log(accountValidation )
         setLocalStorageAccount(accountValidation)  
@@ -62,11 +51,11 @@ let userValidation = () => {
   } 
 }
 
-//? Evento cuando hago click inicio sesion
-const btnLoginAccount = document.querySelector("#btnLoginAccount")
-btnLoginAccount.addEventListener('click',userValidation)
+//! login
+const btnLogin = document.querySelector("#btnLogin")
+btnLogin.addEventListener('click',logIn)
 
-//! Insertando datos de cuenta en local storage
+//? Insertando datos de cuenta en local storage
 const setLocalStorageAccount = (account) =>{
   //console.log(account)
   let accountJSON = JSON.stringify(account)
@@ -74,7 +63,7 @@ const setLocalStorageAccount = (account) =>{
   localStorage.setItem("logged","true")
 }
 
-//! Obtener datos de cuenta en local storage
+//? Obtener datos de cuenta en local storage
 const getLocalStorageAccount = () =>{
   let account = localStorage.getItem("account")
   //console.log(account)
@@ -84,20 +73,19 @@ const getLocalStorageAccount = () =>{
 //? Cambiar botones por datos de usuario
 const removeLoginMenu = () =>{
   const loginMenu = document.querySelector("#loginMenu")
-  setTimeout(() => {
-    loginMenu.classList.add('d-none')
-    setTimeout(() => setloggedMenu() , 100)
-  }, 1200);
+  loginMenu.classList.add('d-none')
 }
 
 //? Cambia botones por menu con carrito e icono de usuario
 const setloggedMenu = () =>{
   const loggedMenu = document.querySelector("#loggedMenu")
-   console.log(loggedMenu.classList.contains('d-none')) 
+  console.log("Agregando Menu Logged")
+//   console.log(loggedMenu.classList.contains('d-none')) 
   if(loggedMenu.classList.contains('d-none')) {
     loggedMenu.classList.remove('d-none')
   }
   localStorage.setItem("logged","true")
+  
 }
 
 //? Cierra la sesion del usuario y regresa botones
@@ -107,15 +95,33 @@ const logOut = () =>{
   loggedMenu.classList.add('d-none')
   const loginMenu = document.querySelector("#loginMenu")
   loginMenu.classList.remove('d-none')
-  removeLocalStorage()
+  localStorage.clear()
 }
 btnLogOut.addEventListener('click',logOut)
 
-//? logOut Local Storage
-const removeLocalStorage = () =>{
-  localStorage.clear()
-  localStorage.setItem("logged","false")
+
+
+//? Validacion cuenta logeada
+/* const loginStatusValidation = () =>{
+  return new Promise((resolve,reject) =>{
+    const status = JSON.parse(localStorage.getItem("logged"))
+    status !== true 
+    ? reject(false) 
+    : resolve(true)
+  })
 }
+
+
+const menuValidation = () =>{
+  loginStatusValidation().then((status) => {
+    console.log(status)
+    status === true ? setloggedMenu() : console.log("cuenta no logeada")
+  }).catch((error) => {
+    console.log(error)
+  })
+} */
+//window.addEventListener('load',menuValidation)
+
 
 //? Clase Game
 class Game{
@@ -313,19 +319,10 @@ window.addEventListener('load',() =>{
 })
  */
 
-window.addEventListener('load',() => {
-  loginStatusValidation()
 
-})
-const loginStatusValidation = () =>{
-  if(localStorage.getItem("logged") === "true"){
-    /* console.log("Sesion iniciada") */
-    let account = JSON.parse(localStorage.getItem("account"))
-    return account
-  }else{
-    console.log("No ha iniciado sesion")
-  } 
-}
+
 //localStorage.setItem("logged","true")
 //localStorage.setItem("account",["admin","123","raulcorral20@gmail.com"])
 //localStorage.clear()
+
+//let account = JSON.parse(localStorage.getItem("account"))
