@@ -39,9 +39,9 @@ main{
 .colored-toast.swal2-icon-success {
     background-color: #a4d007 !important;
 }
-/*! LOGED USER  */
+/*! logged USER  */
 
-.logedMenuIcon{
+.loggedMenuIcon{
     color: #75b022;
     cursor: pointer;
     font-size: 2em;
@@ -92,6 +92,7 @@ main{
     text-align: center;
     color: #a4d007;
     background-color: #4c6b22;
+    max-height: 1.5em;
     
 }
 #errrNoFound{

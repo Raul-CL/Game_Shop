@@ -2,13 +2,16 @@
 //? Array con cuentas registradas
 const Users = [{
   account : "raul.corral",
-  password: "qwe123"
+  password: "qwe123",
+  email: "raulcorral20@gmail.com"
 },{
   account : "laura.garza",
-  password: "qwe123"
+  password: "qwe123",
+  email: "laura.garza@gmail.com"
 },{
   account : "admin",
-  password: "123"
+  password: "123",
+  email: "admin@gmail.com"
 }]
 
 //? Mensaje sweet alert, para error
@@ -24,14 +27,14 @@ const msjErrorSweetAlert =(titulo,mensaje,icon) => {
           showConfirmButton: false,
         }}
 
-//? Funcion para validar si la cuenta y el usuario existen en el array Users
+//! Funcion para validar si la cuenta y el usuario existen en el array Users
 let userValidation = () => {
   let userAccount = document.querySelector("#userAccount").value
   let userPassword = document.querySelector("#userPassword").value
   let loginModalClose = document.querySelector("#loginModalClose")
   /* console.log(userAccount,userPassword) */
   let accountValidation = Users.filter(account => account.account == userAccount)
-  /* console.log(accountValidation) */
+   //console.log(accountValidation) 
   if (accountValidation.length === 0 ) {
     /* console.log("Cuenta incorrecta") */
     swal.fire(msjErrorSweetAlert("Cuenta incorrecta","Intente de nuevo","error"))
@@ -48,10 +51,8 @@ let userValidation = () => {
         }, 1200);
         removeLoginMenu()
         //todo Se agregara funcion para cambiar botones de login por datos de usuario
-        //console.log([userAccount,userPassword])
-        return setLocalStorageAccount([userAccount,userPassword]),
-          getLocalStorageAccount()
-
+        //console.log(accountValidation )
+        setLocalStorageAccount(accountValidation)  
       }else {
         /* console.log("Error contraseña incorrecta") */
         swal.fire(msjErrorSweetAlert("Contraseña incorrecta","Intente de nuevo","error"))
@@ -65,14 +66,15 @@ let userValidation = () => {
 const btnLoginAccount = document.querySelector("#btnLoginAccount")
 btnLoginAccount.addEventListener('click',userValidation)
 
-//? Insertando datos de cuenta en local storage
+//! Insertando datos de cuenta en local storage
 const setLocalStorageAccount = (account) =>{
   //console.log(account)
-  localStorage.setItem("account",account[0])
-  localStorage.setItem("password",account[1])
+  let accountJSON = JSON.stringify(account)
+  localStorage.setItem("account",accountJSON)
+  localStorage.setItem("logged","true")
 }
 
-//? Obtener datos de cuenta en local storage
+//! Obtener datos de cuenta en local storage
 const getLocalStorageAccount = () =>{
   let account = localStorage.getItem("account")
   //console.log(account)
@@ -84,25 +86,25 @@ const removeLoginMenu = () =>{
   const loginMenu = document.querySelector("#loginMenu")
   setTimeout(() => {
     loginMenu.classList.add('d-none')
-    setTimeout(() => setLogedMenu() , 100)
+    setTimeout(() => setloggedMenu() , 100)
   }, 1200);
 }
 
 //? Cambia botones por menu con carrito e icono de usuario
-const setLogedMenu = () =>{
-  const logedMenu = document.querySelector("#logedMenu")
-  /* console.log(logedMenu.classList.contains('d-none')) */
-  if(logedMenu.classList.contains('d-none')) {
-    logedMenu.classList.remove('d-none')
+const setloggedMenu = () =>{
+  const loggedMenu = document.querySelector("#loggedMenu")
+   console.log(loggedMenu.classList.contains('d-none')) 
+  if(loggedMenu.classList.contains('d-none')) {
+    loggedMenu.classList.remove('d-none')
   }
-  localStorage.setItem("loged","true")
+  localStorage.setItem("logged","true")
 }
 
 //? Cierra la sesion del usuario y regresa botones
 const btnLogOut = document.querySelector("#logOut")
 const logOut = () =>{
-  const logedMenu = document.querySelector("#logedMenu")
-  logedMenu.classList.add('d-none')
+  const loggedMenu = document.querySelector("#loggedMenu")
+  loggedMenu.classList.add('d-none')
   const loginMenu = document.querySelector("#loginMenu")
   loginMenu.classList.remove('d-none')
   removeLocalStorage()
@@ -111,9 +113,8 @@ btnLogOut.addEventListener('click',logOut)
 
 //? logOut Local Storage
 const removeLocalStorage = () =>{
-  localStorage.setItem("loged","false")
-  localStorage.removeItem("account")
-  localStorage.removeItem("password")
+  localStorage.clear()
+  localStorage.setItem("logged","false")
 }
 
 //? Clase Game
@@ -223,7 +224,7 @@ const setGameCards = (games)=>{
     <p class="gameCard__genre">${gameCard.genre}</p>
     <p class="gameCard__platform">${gameCard.platform}</p>
     <p class="gameCard__price">$${gameCard.price}</p>
-    <button id="btnAddToCar">Agregar al carrito</button>
+    <button id="btnAddToCar" class="btnAddToCar">Agregar al carrito</button>
     <p hidden>${gameCard.id}</p>
     </article>`
     gameCardContainer.innerHTML += innerHTMLGameContainer
@@ -251,7 +252,8 @@ const getFilters = () => {
 //? Funcion para mostrar mensaje de error
 const gamesNoFound = ()=>{
   let cardContainer = document.querySelector("#gameCardsContainer")
-  cardContainer.innerHTML = `<p id="errrNoFound">No existen juegos con esas caracteristicas</p>`
+  cardContainer.innerHTML = ``
+  swal.fire(msjErrorSweetAlert("No se encontraron juegos","No existen juegos con estos filtros","warning"))
 }
 
 //? Aplica filtros, si no se encuentra un juego llama a funcion de error
@@ -282,4 +284,48 @@ const applyFilter = ()=>{
 
 filtersListener() //! Aplicacion de filtros
 
+//todo HACER VALIDADOR DE SI EXISTE CUENTA EN LOCAL STORAGE MOSTRAR EL PANEL DE LOGEO
+//! CARRITO
+//? Validad que este logeado para agregar a carrito
+//TODO QUEDA PENDIENTE EL CARRITO HASTA VALIDAR ESTATUS DE LOGIN
+/* 
+window.addEventListener('load',() =>{
+  loggedValidation()
+  localStorage.clear()
+  let btnAddToCar = document.querySelectorAll(".btnAddToCar")
+  let nameGame, priceGame
+  btnAddToCar.forEach(card => {
+    console.log(card)    
+    card.addEventListener('click',(evnt) => {
+      nameGame = evnt.target.parentNode.children[1].innerText
+      priceGame = evnt.target.parentNode.children[5].innerText
+      localStorage.getItem("logged") == "true" ? (
+        localStorage.getItem(`${nameGame}`,`${priceGame}`) ?(
+          console.log("Error el juego ya existe")
+        ):(
+          console.log("Juego Agregado al carrito"),
+        localStorage.setItem(`${nameGame}`,`${priceGame}`)
+        )
+      ): (
+        swal.fire(msjErrorSweetAlert("Cuenta desconectada","Debe de iniciar sesion antes de agregar al carrito","warning")))
+    }) 
+  })  
+})
+ */
 
+window.addEventListener('load',() => {
+  loginStatusValidation()
+
+})
+const loginStatusValidation = () =>{
+  if(localStorage.getItem("logged") === "true"){
+    /* console.log("Sesion iniciada") */
+    let account = JSON.parse(localStorage.getItem("account"))
+    return account
+  }else{
+    console.log("No ha iniciado sesion")
+  } 
+}
+//localStorage.setItem("logged","true")
+//localStorage.setItem("account",["admin","123","raulcorral20@gmail.com"])
+//localStorage.clear()
