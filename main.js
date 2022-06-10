@@ -1,20 +1,3 @@
-//! Inicio Validacion
-//? Array con cuentas registradas
-const Users = [{
-  account : "raul.corral",
-  password: "qwe123",
-  email: "raulcorral20@gmail.com"
-},{
-  account : "laura.garza",
-  password: "qwe123",
-  email: "laura.garza@gmail.com"
-},{
-  account : "admin",
-  password: "123",
-  email: "admin@gmail.com"
-}]
-
-
 
 //! Funcion para validar si la cuenta y el usuario existen en el array Users
 let logIn = () => {
@@ -102,7 +85,7 @@ btnLogOut.addEventListener('click',logOut)
 
 
 //? Validacion cuenta logeada
-/* const loginStatusValidation = () =>{
+const loginStatusValidation = () =>{
   return new Promise((resolve,reject) =>{
     const status = JSON.parse(localStorage.getItem("logged"))
     status !== true 
@@ -111,16 +94,17 @@ btnLogOut.addEventListener('click',logOut)
   })
 }
 
-
+//? Valida el menu al inicio de sesion y coloca el que debe ir
 const menuValidation = () =>{
   loginStatusValidation().then((status) => {
     console.log(status)
-    status === true ? setloggedMenu() : console.log("cuenta no logeada")
+    status === true ? (setloggedMenu(), removeLoginMenu())
+    : console.log("cuenta no logeada")
   }).catch((error) => {
     console.log(error)
   })
-} */
-//window.addEventListener('load',menuValidation)
+} 
+window.addEventListener('load',menuValidation)
 
 
 //? Clase Game
