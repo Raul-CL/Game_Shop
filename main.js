@@ -214,8 +214,7 @@ const setGameCards = (games)=>{
     <p class="gameCard__genre">${gameCard.genre}</p>
     <p class="gameCard__platform">${gameCard.platform}</p>
     <p class="gameCard__price">$${gameCard.price}</p>
-    <button id="btnAddToCar" class="btnAddToCar">Agregar al carrito</button>
-    <p hidden>${gameCard.id}</p>
+    <button id="btnAddToCar" data-id="${gameCard.id}" class="btnAddToCar">Agregar al carrito</button>
     </article>`
     gameCardContainer.innerHTML += innerHTMLGameContainer
     /* console.log(gameCard) */
@@ -275,38 +274,35 @@ const applyFilter = ()=>{
 filtersListener() //! Aplicacion de filtros
 
 //todo HACER VALIDADOR DE SI EXISTE CUENTA EN LOCAL STORAGE MOSTRAR EL PANEL DE LOGEO
-//! CARRITO
-//? Validad que este logeado para agregar a carrito
-//TODO QUEDA PENDIENTE EL CARRITO HASTA VALIDAR ESTATUS DE LOGIN
-/* 
-window.addEventListener('load',() =>{
-  loggedValidation()
-  localStorage.clear()
-  let btnAddToCar = document.querySelectorAll(".btnAddToCar")
-  let nameGame, priceGame
-  btnAddToCar.forEach(card => {
-    console.log(card)    
-    card.addEventListener('click',(evnt) => {
-      nameGame = evnt.target.parentNode.children[1].innerText
-      priceGame = evnt.target.parentNode.children[5].innerText
-      localStorage.getItem("logged") == "true" ? (
-        localStorage.getItem(`${nameGame}`,`${priceGame}`) ?(
-          console.log("Error el juego ya existe")
-        ):(
-          console.log("Juego Agregado al carrito"),
-        localStorage.setItem(`${nameGame}`,`${priceGame}`)
-        )
-      ): (
-        swal.fire(msjErrorSweetAlert("Cuenta desconectada","Debe de iniciar sesion antes de agregar al carrito","warning")))
-    }) 
-  })  
+//? Valida status si es correcto llama funcion para agregar al carrito
+const btnAddToCar = document.querySelectorAll(".btnAddToCar")
+const addToCar = (evnt) => {
+  loginStatusValidation().then((status) => {
+    //console.log(status)
+    let gameId = evnt.target.attributes['data-id'].value -1
+    status === true 
+    ? gameCar(gameId)//console.log(gameId)
+    : console.log("cuenta no logeada")
+  }).catch(error => console.log(error))
+}
+//? Agregar listener a btns
+btnAddToCar.forEach(btn =>{
+  btn.addEventListener('click',(evnt) =>{
+    addToCar(evnt)
+  })
 })
- */
 
-
-
-//localStorage.setItem("logged","true")
-//localStorage.setItem("account",["admin","123","raulcorral20@gmail.com"])
-//localStorage.clear()
-
-//let account = JSON.parse(localStorage.getItem("account"))
+const gameCarArray = []
+const gameCar = (id) =>{
+  console.log(gameList[id])
+  gameCarArray.length < 1
+  ? gameCarArray.push(gameList[id])
+  : gameCarArray.includes(gameList[id]) 
+  ? console.log("Ya existe ese juego en el carrito")
+  : gameCarArray.push(gameList[id])
+  /* gameCarArray.includes(id)
+  ? console.log("El objeto ya existe")
+  : gameCarArray.push(gameList[id])
+  */
+  console.log(gameCarArray) 
+}
