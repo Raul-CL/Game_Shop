@@ -62,7 +62,7 @@ const removeLoginMenu = () =>{
 //? Cambia botones por menu con carrito e icono de usuario
 const setloggedMenu = () =>{
   const loggedMenu = document.querySelector("#loggedMenu")
-  console.log("Agregando Menu Logged")
+  //console.log("Agregando Menu Logged")
 //   console.log(loggedMenu.classList.contains('d-none')) 
   if(loggedMenu.classList.contains('d-none')) {
     loggedMenu.classList.remove('d-none')
@@ -97,11 +97,11 @@ const loginStatusValidation = () =>{
 //? Valida el menu al inicio de sesion y coloca el que debe ir
 const menuValidation = () =>{
   loginStatusValidation().then((status) => {
-    console.log(status)
+    //console.log(status)
     status === true ? (setloggedMenu(), removeLoginMenu())
     : console.log("cuenta no logeada")
   }).catch((error) => {
-    console.log(error)
+    //console.log(error)
   })
 } 
 window.addEventListener('load',menuValidation)
@@ -267,39 +267,45 @@ const applyFilter = ()=>{
     filterGames = gameList
     setGameCards(filterGames)
   }
-  console.log(filterGames)  
+  //console.log(filterGames)  
   
 }
 
 filtersListener() //! Aplicacion de filtros
 
-//todo HACER VALIDADOR DE SI EXISTE CUENTA EN LOCAL STORAGE MOSTRAR EL PANEL DE LOGEO
-//? Valida status si es correcto llama funcion para agregar al carrito
-const btnAddToCar = document.querySelectorAll(".btnAddToCar")
+//? Agregar listener a btns del carrito
+const addListenerCar = () =>{
+  const btnAddToCar = document.querySelectorAll(".btnAddToCar")
+  btnAddToCar.forEach(btn =>{
+    btn.addEventListener('click',(evnt) =>{
+      addToCar(evnt)
+    })
+  })
+}
+addListenerCar()
+
+//? Valida estatus si es true retorna el ID del juego
 const addToCar = (evnt) => {
   loginStatusValidation().then((status) => {
     //console.log(status)
     let gameId = evnt.target.attributes['data-id'].value -1
     status === true 
-    ? gameCar(gameId)//console.log(gameId)
+    ? (gameCar(gameId) /* ,console.log(gameId) */)
     : console.log("cuenta no logeada")
   }).catch(error => console.log(error))
 }
-//? Agregar listener a btns
-btnAddToCar.forEach(btn =>{
-  btn.addEventListener('click',(evnt) =>{
-    addToCar(evnt)
-  })
-})
+
+
+
 
 const gameCarArray = []
 const gameCar = (id) =>{
-  console.log(gameList[id])
+  //console.log(gameList[id])
   gameCarArray.length < 1
   ? gameCarArray.push(gameList[id])
   : gameCarArray.includes(gameList[id]) 
-  ? console.log("Ya existe ese juego en el carrito")
-  : gameCarArray.push(gameList[id])
+    ? console.log("Ya existe ese juego en el carrito") 
+    : gameCarArray.push(gameList[id])
   /* gameCarArray.includes(id)
   ? console.log("El objeto ya existe")
   : gameCarArray.push(gameList[id])
