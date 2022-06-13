@@ -31,6 +31,8 @@ const successAction = Swal.mixin({
   position: 'top-end',
   showConfirmButton: false,
   timer: 1000,
-  
+  icon: 'success',
+  background: '#212529',
+  color: '#ffffff'
 })
 

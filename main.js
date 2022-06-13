@@ -303,15 +303,17 @@ const createGameCar = (id) =>{
   //console.log(gameList[id])
   gameCarArray.length < 1
   ? (gameCarArray.push(gameList[id]),
-    printCar(gameCarArray))
+    printCar(gameCarArray),
+    successAction.fire({title: `Juego agregado al carrito`}))
   : gameCarArray.includes(gameList[id]) 
     ? swal.fire(msjErrorSweetAlert("Juego adquirido","El juego ya se encuentra en carrito","warning"))
     : (gameCarArray.push(gameList[id]),
-      printCar(gameCarArray))
+      printCar(gameCarArray), 
+      successAction.fire({title: `Juego agregado al carrito`}))
   //console.log(gameCarArray)
 }
 
-const printCar = (gameArray) =>{
+const printCar = () =>{
   /* console.log(gameCarArray) */
   const carModalBody = document.querySelector("#carModalBody")
   const carPrice = document.querySelector("#carPrice")
@@ -328,26 +330,22 @@ const printCar = (gameArray) =>{
     price += +game.price
   })
   carPrice.innerHTML= "$"+price
+  
 }
 
 const btnEmpyCar = document.querySelector("#empyCar")
 const empyCar = () =>{
-  swal.fire(msjConfirmSweetAlert("Estas seguro?","El carrito sera eliminado","warning","Vaciar carrito")).then((result) => {
+  swal.fire(msjConfirmSweetAlert("Estas seguro?","El carrito sera eliminado","question","Vaciar carrito")).then((result) => {
     if (result.isConfirmed) {
-      successAction.fire({
-        icon: 'success',
-        title: 'Signed in successfully',
-        background: '#212529',
-            color: '#ffffff',
-      })
+      successAction.fire({title: 'Carrito vaciado'})
       carModalBody.innerHTML = ''
       carPrice.innerHTML='$0' 
       gameCarArray.length = 0
     }
   })
-  
   const carModalBody = document.querySelector("#carModalBody")
   const carPrice = document.querySelector("#carPrice")
-  
 }
 btnEmpyCar.addEventListener("click", empyCar)
+
+
