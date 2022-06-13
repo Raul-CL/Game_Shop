@@ -348,4 +348,8 @@ const empyCar = () =>{
 }
 btnEmpyCar.addEventListener("click", empyCar)
 
+const btnProfile = document.querySelector("#btnProfile")
+const viewProfile = () =>{
 
+}
+btnProfile.addEventListener('click',viewProfile)

@@ -36,7 +36,7 @@
                     <div class="dropdown">
                         <div class="loggedMenuIcon dropdown-toggle" id="userIcon" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i></div>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userIcon">
-                            <li><button class="dropdown-item" type="button">Ver perfil</button></li>
+                            <li><button class="dropdown-item" type="button" id="btnProfile">Ver perfil</button></li>
                             <li><button class="dropdown-item" id="logOut" type="button">Cerrar sesion</button></li>
                         </ul>
                     </div>
@@ -91,25 +91,52 @@
         <!--? CARRITO -->
         <div class="modal fade" id="carModal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
             <div class="modal-dialog">
-            <div class="modal-content bg-dark text-light">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Mi carrito</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="carModalBody">
-                <!--! Card Modal Test  -->
-                <!-- <article id="" class="col-12 d-flex flex-row justify-content-evenly text-center align-items-center">
-                    <img src="https://www.freetogame.com/g/1/thumbnail.jpg" alt="" class="col-4">
-                    <h3 class="col-4 h-100">${titulo}</h3>
-                    <p class="col-4 h-100">${precio}</p>
-                </article> -->
-                </div>
-                <div class="modal-footer">
-                <p>El total es de : <b class="text-success" id="carPrice">$0</b></p>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Mi carrito</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="carModalBody">
+                        <!--! Card Modal Test  -->
+                        <!-- <article id="" class="col-12 d-flex flex-row justify-content-evenly text-center align-items-center">
+                            <img src="https://www.freetogame.com/g/1/thumbnail.jpg" alt="" class="col-4">
+                            <h3 class="col-4 h-100">${titulo}</h3>
+                            <p class="col-4 h-100">${precio}</p>
+                        </article> -->
+                    </div>
+                    <div class="modal-footer">
+                        <p>El total es de : <b class="text-success" id="carPrice">$0</b></p>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btnConfirmPurchase">Confirm</button>
+                    </div>
                 </div>
             </div>
+        </div>
+        <!--? PERFIL   -->
+        <div class="" id="profile" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Mi perfil</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="profileBody">
+                        <!--! Card Modal Test  -->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="">Nombre</span>
+                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                          
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">@</span>
+                            <input type="text" class="form-control" name="email" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btnConfirmPurchase">Save</button>
+                    </div>
+                </div>
             </div>
         </div>
         <!--! BS MODAL  -->
@@ -138,6 +165,8 @@
     <script src="sweetalert.js"></script>
     <script src="users.js"></script>
     <script src="main.js"></script>
+    <!-- <script src="mailing.js"></script> -->
+    
     
 </body>
 </html>
