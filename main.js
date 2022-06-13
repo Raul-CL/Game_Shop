@@ -290,7 +290,7 @@ const addToCar = (evnt) => {
     //console.log(status)
     let gameId = evnt.target.attributes['data-id'].value -1
     status === true 
-    ? (gameCar(gameId) /* ,console.log(gameId) */)
+    ? (createGameCar(gameId) /* ,console.log(gameId) */)
     : console.log("cuenta no logeada")
   }).catch(error => console.log(error))
 }
@@ -299,16 +299,55 @@ const addToCar = (evnt) => {
 
 
 const gameCarArray = []
-const gameCar = (id) =>{
+const createGameCar = (id) =>{
   //console.log(gameList[id])
   gameCarArray.length < 1
-  ? gameCarArray.push(gameList[id])
+  ? (gameCarArray.push(gameList[id]),
+    printCar(gameCarArray))
   : gameCarArray.includes(gameList[id]) 
-    ? console.log("Ya existe ese juego en el carrito") 
-    : gameCarArray.push(gameList[id])
-  /* gameCarArray.includes(id)
-  ? console.log("El objeto ya existe")
-  : gameCarArray.push(gameList[id])
-  */
-  console.log(gameCarArray) 
+    ? swal.fire(msjErrorSweetAlert("Juego adquirido","El juego ya se encuentra en carrito","warning"))
+    : (gameCarArray.push(gameList[id]),
+      printCar(gameCarArray))
+  //console.log(gameCarArray)
 }
+
+const printCar = (gameArray) =>{
+  /* console.log(gameCarArray) */
+  const carModalBody = document.querySelector("#carModalBody")
+  const carPrice = document.querySelector("#carPrice")
+  carModalBody.innerHTML=''
+  let carItem,price = 0
+  gameCarArray.forEach(game => {
+    console.log(game)
+    carItem = `<article id="${game.id}" class="col-12 d-flex flex-row justify-content-evenly text-center align-items-center">
+    <img src="${game.thumbnail}" alt="${game.title}" class="col-4">
+    <h3 class="col-4 h-100">${game.title}</h3>
+    <p class="col-4 h-100">$${game.price}</p>
+    </article> <hr>`
+    carModalBody.innerHTML += carItem
+    price += +game.price
+  })
+  carPrice.innerHTML= "$"+price
+}
+
+const btnEmpyCar = document.querySelector("#empyCar")
+const empyCar = () =>{
+  swal.fire(msjConfirmSweetAlert("Estas seguro?","El carrito sera eliminado","warning","Vaciar carrito")).then((result) => {
+    if (result.isConfirmed) {
+      successAction.fire({
+        icon: 'success',
+        title: 'Signed in successfully',
+        background: '#212529',
+            color: '#ffffff',
+      })
+      carModalBody.innerHTML = ''
+      carPrice.innerHTML='$0' 
+      gameCarArray.length = 0
+    }
+  })
+  
+  const carModalBody = document.querySelector("#carModalBody")
+  const carPrice = document.querySelector("#carPrice")
+  
+}
+btnEmpyCar.addEventListener("click", empyCar)

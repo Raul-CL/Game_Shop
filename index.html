@@ -29,8 +29,8 @@
                     <div class="dropdown">
                         <div class="loggedMenuIcon dropdown-toggle" id="userCar" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-cart-shopping"></i></div>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userCar">
-                            <li><button class="dropdown-item" type="button">Ver carrito</button></li>
-                            <li><button class="dropdown-item" type="button">Vaciar carrito</button></li>
+                            <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#carModal">Ver carrito</button></li>
+                            <li><button class="dropdown-item" type="button" id="empyCar">Vaciar carrito</button></li>
                         </ul>
                     </div>
                     <div class="dropdown">
@@ -60,6 +60,7 @@
         <!--! /FILTROS  -->
 
         <!--! BS MODAL  -->
+        <!--? LOGIN  -->
         <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content bg-dark">
@@ -87,6 +88,30 @@
               </div>
             </div>
           </div>
+        <!--? CARRITO -->
+        <div class="modal fade" id="carModal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Mi carrito</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="carModalBody">
+                <!--! Card Modal Test  -->
+                <!-- <article id="" class="col-12 d-flex flex-row justify-content-evenly text-center align-items-center">
+                    <img src="https://www.freetogame.com/g/1/thumbnail.jpg" alt="" class="col-4">
+                    <h3 class="col-4 h-100">${titulo}</h3>
+                    <p class="col-4 h-100">${precio}</p>
+                </article> -->
+                </div>
+                <div class="modal-footer">
+                <p>El total es de : <b class="text-success" id="carPrice">$0</b></p>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+            </div>
+        </div>
         <!--! BS MODAL  -->
 
         <section id="gameCardsContainer">
