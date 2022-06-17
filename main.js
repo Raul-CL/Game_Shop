@@ -1,37 +1,17 @@
-
-//! Funcion para validar si la cuenta y el usuario existen en el array Users
+//! Validacion de cuenta ingresada por usuario
 let logIn = () => {
   let userAccount = document.querySelector("#userAccount").value
   let userPassword = document.querySelector("#userPassword").value
   let loginModalClose = document.querySelector("#loginModalClose")
-  /* console.log(userAccount,userPassword) */
-  let accountValidation = Users.filter(account => account.account == userAccount)
-   //console.log(accountValidation) 
-  if (accountValidation.length === 0 ) {
-    /* console.log("Cuenta incorrecta") */
-    swal.fire(msjErrorSweetAlert("Cuenta incorrecta","Intente de nuevo","error"))
-    return false
-  }else{
-    if(userAccount == accountValidation[0].account){
-      //console.log("Cuenta correcta")
-      if(userPassword === accountValidation[0].password){
-        //console.log("Contraseña correcta puede entrar")
-        swal.fire(msjErrorSweetAlert("Exito","Cuenta y contraseña correcta","success"))
-        setTimeout(() => {
-          loginModalClose.click()
-        }, 1200);
-        removeLoginMenu()
-        setloggedMenu()
-        //todo Se agregara funcion para cambiar botones de login por datos de usuario
-        //console.log(accountValidation )
-        setLocalStorageAccount(accountValidation)  
-      }else {
-        /* console.log("Error contraseña incorrecta") */
-        swal.fire(msjErrorSweetAlert("Contraseña incorrecta","Intente de nuevo","error"))
-        return false
-      }
-    }else console.log("Error")
-  } 
+  let accountFound = Users.filter(account => account.account == userAccount && account.password == userPassword)
+  if (accountFound.length > 0){
+    let [{account = "test",password = "test",email = "test"}] = accountFound 
+    swal.fire(msjErrorSweetAlert("Exito","Cuenta y contraseña correcta","success"),
+    setTimeout(() => {loginModalClose.click()}, 1200),
+    removeLoginMenu(),
+    setloggedMenu(),
+    setLocalStorageAccount([account,password,email]))
+  }else swal.fire(msjErrorSweetAlert("Error","Cuenta o contraseña incorrecta","error"))
 }
 
 //! login
@@ -40,8 +20,8 @@ btnLogin.addEventListener('click',logIn)
 
 //? Insertando datos de cuenta en local storage
 const setLocalStorageAccount = (account) =>{
-  //console.log(account)
   let accountJSON = JSON.stringify(account)
+  //console.log(accountJSON)
   localStorage.setItem("account",accountJSON)
   localStorage.setItem("logged","true")
 }
@@ -62,11 +42,10 @@ const removeLoginMenu = () =>{
 //? Cambia botones por menu con carrito e icono de usuario
 const setloggedMenu = () =>{
   const loggedMenu = document.querySelector("#loggedMenu")
-  //console.log("Agregando Menu Logged")
-//   console.log(loggedMenu.classList.contains('d-none')) 
-  if(loggedMenu.classList.contains('d-none')) {
+  console.log("Agregando Menu Logged")
+  //console.log(loggedMenu.classList.contains('d-none')) 
+  loggedMenu.classList.contains('d-none') &&
     loggedMenu.classList.remove('d-none')
-  }
   localStorage.setItem("logged","true")
   
 }
@@ -152,10 +131,8 @@ createGameList(game9)
 const getGameGenders = (games) => {
   const genreList = []
     games.forEach(game => {
-      if(!genreList.includes(game.genre)){
-        genreList.push(game.genre)
-      }     
-    });
+      !genreList.includes(game.genre) && genreList.push(game.genre)
+    })
     /* console.log(genreList) */   //! Array generos
     return genreList
 }
@@ -199,6 +176,16 @@ const setGamePlatforms = (platforms)=>{
 //? Llamo a mi funcion y mando otra 
 setGamePlatforms(getGamePlatform(gameList))
 
+//? Agregar listener a btns del carrito
+const addListenerCar = () =>{
+  const btnAddToCar = document.querySelectorAll(".btnAddToCar")
+  btnAddToCar.forEach(btn =>{
+    btn.addEventListener('click',(evnt) =>{
+      addToCar(evnt)
+    })
+  })
+}
+
 //? Insertar Juegos en HTML
 const setGameCards = (games)=>{
   /* console.log(games) */
@@ -219,7 +206,9 @@ const setGameCards = (games)=>{
     gameCardContainer.innerHTML += innerHTMLGameContainer
     /* console.log(gameCard) */
   })
+  addListenerCar()
 }
+
 setGameCards(gameList) //! Cuando cargue la pagina
 
 //? Eventos change de filtros, que llama a funcion para aplicar los filtros
@@ -228,7 +217,9 @@ const filtersListener = () => {
   let platformFilter = document.querySelector("#platformFilter")
   genreFilter.addEventListener('change',() => applyFilter())
   platformFilter.addEventListener('change',() => applyFilter())
+  console.log("Evento change de filters")
 }
+filtersListener() //! Aplicacion de filtros
 
 //? Funcion para obtener filtros, regresa un array con ambos valores
 const getFilters = () => {
@@ -238,6 +229,29 @@ const getFilters = () => {
   return [genre,platform]
 }
 
+//? Aplica filtros, si no se encuentra un juego llama a funcion de error
+const applyFilter = ()=>{
+  let [genre,platform] = getFilters()
+  let filterGames = []
+  if(genre != "0" && platform != "0"){
+    filterGames = gameList.filter(game => game.genre == genre && game.platform == platform)
+    setGameCards(filterGames)
+    if(filterGames.length < 1) gamesNoFound()
+  }else if(genre != "0" && platform == "0"){
+    filterGames = gameList.filter(game => game.genre == genre)
+    setGameCards(filterGames)
+    if(filterGames.length < 1) gamesNoFound()
+  }else if(genre == "0" && platform != "0"){
+    filterGames = gameList.filter(game => game.platform == platform)
+    setGameCards(filterGames)
+    if(filterGames.length < 1) gamesNoFound() 
+  }else if(genre == "0" && platform == "0"){
+    filterGames = gameList
+    setGameCards(filterGames)
+  }
+  //console.log(filterGames)  
+}
+
 //? Funcion para mostrar mensaje de error
 const gamesNoFound = ()=>{
   let cardContainer = document.querySelector("#gameCardsContainer")
@@ -245,44 +259,8 @@ const gamesNoFound = ()=>{
   swal.fire(msjErrorSweetAlert("No se encontraron juegos","No existen juegos con estos filtros","warning"))
 }
 
-//? Aplica filtros, si no se encuentra un juego llama a funcion de error
-const applyFilter = ()=>{
-  const filtersValues = getFilters()
-  let genreFilter = filtersValues[0]
-  let platformFilter = filtersValues[1]
-  let filterGames = []
-  if(genreFilter != "0" && platformFilter != "0"){
-    filterGames = gameList.filter(game => game.genre == genreFilter && game.platform == platformFilter)
-    setGameCards(filterGames)
-    if(filterGames.length < 1) gamesNoFound()
-  }else if(genreFilter != "0" && platformFilter == "0"){
-    filterGames = gameList.filter(game => game.genre == genreFilter)
-    setGameCards(filterGames)
-    if(filterGames.length < 1) gamesNoFound()
-  }else if(genreFilter == "0" && platformFilter != "0"){
-    filterGames = gameList.filter(game => game.platform == platformFilter)
-    setGameCards(filterGames)
-    if(filterGames.length < 1) gamesNoFound() 
-  }else if(genreFilter == "0" && platformFilter == "0"){
-    filterGames = gameList
-    setGameCards(filterGames)
-  }
-  //console.log(filterGames)  
-  
-}
 
-filtersListener() //! Aplicacion de filtros
 
-//? Agregar listener a btns del carrito
-const addListenerCar = () =>{
-  const btnAddToCar = document.querySelectorAll(".btnAddToCar")
-  btnAddToCar.forEach(btn =>{
-    btn.addEventListener('click',(evnt) =>{
-      addToCar(evnt)
-    })
-  })
-}
-addListenerCar()
 
 //? Valida estatus si es true retorna el ID del juego
 const addToCar = (evnt) => {

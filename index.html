@@ -36,7 +36,7 @@
                     <div class="dropdown">
                         <div class="loggedMenuIcon dropdown-toggle" id="userIcon" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i></div>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userIcon">
-                            <li><button class="dropdown-item" type="button" id="btnProfile">Ver perfil</button></li>
+                            <li><button class="dropdown-item" type="button" id="btnProfile" data-bs-toggle="modal" data-bs-target="#profile">Ver perfil</button></li>
                             <li><button class="dropdown-item" id="logOut" type="button">Cerrar sesion</button></li>
                         </ul>
                     </div>
@@ -71,7 +71,7 @@
                 <div class="modal-body ">
                     <form class="needs-validation" id="loginForm" novalidate>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control " id="userAccount" autocomplete="off" placeholder="name@example.com" required>
+                            <input type="text" class="form-control" id="userAccount" autocomplete="off" placeholder="name@example.com" required>
                             <label for="userAccount" class="form-label"><p id="accountPlaceholder">Nombre de cuenta:</p> <p id="msjErrorAccount" style="display: none;">Error cuenta incorrecta</p></label>
                         </div>
                         <div class="form-floating">
@@ -113,7 +113,7 @@
             </div>
         </div>
         <!--? PERFIL   -->
-        <div class="" id="profile" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal fade" id="profile" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content bg-dark text-light">
                     <div class="modal-header">
