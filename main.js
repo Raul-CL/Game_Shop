@@ -61,8 +61,6 @@ const logOut = () =>{
 }
 btnLogOut.addEventListener('click',logOut)
 
-
-
 //? Validacion cuenta logeada
 const loginStatusValidation = () =>{
   return new Promise((resolve,reject) =>{
@@ -259,13 +257,10 @@ const gamesNoFound = ()=>{
   swal.fire(msjErrorSweetAlert("No se encontraron juegos","No existen juegos con estos filtros","warning"))
 }
 
-
-
-
 //? Valida estatus si es true retorna el ID del juego
 const addToCar = (evnt) => {
   loginStatusValidation().then((status) => {
-    //console.log(status)
+    console.log(evnt.target.attributes)
     let gameId = evnt.target.attributes['data-id'].value -1
     status === true 
     ? (createGameCar(gameId) /* ,console.log(gameId) */)
@@ -273,9 +268,7 @@ const addToCar = (evnt) => {
   }).catch(error => console.log(error))
 }
 
-
-
-
+//? Agrega juegos al carrito
 const gameCarArray = []
 const createGameCar = (id) =>{
   //console.log(gameList[id])
@@ -291,6 +284,7 @@ const createGameCar = (id) =>{
   //console.log(gameCarArray)
 }
 
+//? Crea plantilla de carrito
 const printCar = () =>{
   /* console.log(gameCarArray) */
   const carModalBody = document.querySelector("#carModalBody")
@@ -311,6 +305,7 @@ const printCar = () =>{
   
 }
 
+//? Vacia carrito
 const btnEmpyCar = document.querySelector("#empyCar")
 const empyCar = () =>{
   swal.fire(msjConfirmSweetAlert("Estas seguro?","El carrito sera eliminado","question","Vaciar carrito")).then((result) => {
@@ -326,8 +321,4 @@ const empyCar = () =>{
 }
 btnEmpyCar.addEventListener("click", empyCar)
 
-const btnProfile = document.querySelector("#btnProfile")
-const viewProfile = () =>{
 
-}
-btnProfile.addEventListener('click',viewProfile)
