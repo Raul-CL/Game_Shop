@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./img/js.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/favicon_gamer.png" type="image/x-icon" />
+    
     <!--? Bootstrap  -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--? Fontawesome ICONS  -->
@@ -45,9 +46,9 @@
         </nav>
     </header>
     
-    <main>
+    <main class="col-12">
         <!--! FILTROS  -->
-        <div class="container container__filter">
+        <!-- <div class="container container__filter">
             <section id="filters">
                 <select name="" id="genreFilter">
                     <option value="0" selected >All</option>
@@ -56,8 +57,25 @@
                     <option value="0" selected >All</option>
                 </select>
             </section>
-        </div>
+        </div> -->
         <!--! /FILTROS  -->
+        <!--FILTROS CON BOOTSTRAL  -->
+        <section id="filters" class="d-flex justify-content-center flex-wrap">
+              <!--! Filters  -->
+              <section id="" class="col-10 d-flex justify-content-around ">
+                <div class="col-3 mt-3">
+                  <select class="form-select" id="platformFilter" aria-label="Default select example">
+                    <option value="0" selected >All plataform</option>
+                  </select>
+                </div>
+                <div class="col-3 mt-3">
+                  <select class="form-select" id="genreFilter" aria-label="Default select example">
+                    <option value="0" selected >All Genere</option>
+                  </select>
+                </div>
+              </section>
+              <!--! Filters  -->
+          </section>
 
         <!--! BS MODAL  -->
         <!--? LOGIN  -->

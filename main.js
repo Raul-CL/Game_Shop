@@ -262,10 +262,8 @@ const addToCar = (evnt) => {
   loginStatusValidation().then((status) => {
     console.log(evnt.target.attributes)
     let gameId = evnt.target.attributes['data-id'].value -1
-    status === true 
-    ? (createGameCar(gameId) /* ,console.log(gameId) */)
-    : console.log("cuenta no logeada")
-  }).catch(error => console.log(error))
+    status === true && (createGameCar(gameId)  ,console.log(gameId) )    
+  }).catch(() => swal.fire(msjErrorSweetAlert("Error","Para agregar al carrigo debe iniciar sesion","warning")))
 }
 
 //? Agrega juegos al carrito
