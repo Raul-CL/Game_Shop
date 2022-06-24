@@ -42,7 +42,7 @@ const removeLoginMenu = () =>{
 //? Cambia botones por menu con carrito e icono de usuario
 const setloggedMenu = () =>{
   const loggedMenu = document.querySelector("#loggedMenu")
-  console.log("Agregando Menu Logged")
+  //console.log("Agregando Menu Logged")
   //console.log(loggedMenu.classList.contains('d-none')) 
   loggedMenu.classList.contains('d-none') &&
     loggedMenu.classList.remove('d-none')
@@ -83,48 +83,19 @@ const menuValidation = () =>{
 } 
 window.addEventListener('load',menuValidation)
 
-
-//? Clase Game
-class Game{
-  constructor(id,title,price,thumbnail,description,genre,platform){
-    this.id = id ,
-    this.title = title ,
-    this.price = price ,
-    this.thumbnail = thumbnail ,
-    this.description = description ,
-    this.genre = genre ,
-    this.platform = platform 
-  }
+let gameList 
+const pedidoAPI = async () => {
+  const response = await fetch('./data/dataGame.json') //Pasa a ser sincronico
+  const data = await response.json()
+  gameList = data
+  //console.log(gameList)
+  //!RENDERIZAR VISTAS
+  setGameGenders(getGameGenders(gameList))
+  setGamePlatforms(getGamePlatform(gameList))
+  setGameCards(gameList)
 }
+pedidoAPI()
 
-//? Object Game
-
-const game1 = new Game(1,"Dauntless",0,"https://www.freetogame.com/g/1/thumbnail.jpg","A free-to-play, co-op action RPG with gameplay similar to Monster Hunter.","MMORPG","Nintendo Switch")
-const game2 = new Game(2,"World of Tanks",250,"https://www.freetogame.com/g/2/thumbnail.jpg","If you like blowing up tanks, with a quick and intense game style you will love this game!","Action","Nintendo Switch")
-const game3 = new Game(3,"Warframe",0,"https://www.freetogame.com/g/3/thumbnail.jpg","A cooperative free-to-play third person online action shooter set in an stunning sci-fi world. ","Shooter","PC (Windows)")
-const game4 = new Game(4,"CRSED: F.O.A.D.",300,"https://www.freetogame.com/g/4/thumbnail.jpg","Take the battle royale genre and add  mystical powers and you have CRSED: F.O.A.D. (Aka Cuisine Royale: Second Edition)","Shooter","PC (Windows)")
-const game5 = new Game(5,"Crossout",770,"https://www.freetogame.com/g/5/thumbnail.jpg","A post-apocalyptic MMO vehicle combat game! ","Action","XBox")
-const game6 = new Game(6,"Blade and Soul",0,"https://www.freetogame.com/g/6/thumbnail.jpg","A free-to-play martial arts MMORPG that tasks players with learning combination attacks.","Strategy","XBox")
-const game7 = new Game(7,"Armored Warfare",550,"https://www.freetogame.com/g/7/thumbnail.jpg","A modern team-based MMO tank game from Obsidian Entertainment.","Shooter","PS5")
-const game8 = new Game(8,"Trove",200,"https://www.freetogame.com/g/8/thumbnail.jpg","A free to play Sandbox massively multiplayer online role-playing game! ","MMORPG","PS5")
-const game9 = new Game(10,"ArcheAge",50,"https://www.freetogame.com/g/10/thumbnail.jpg","A free-to-play, hybrid fantasy/sandbox MMORPG brought to you by Trion Worlds.","Strategy","Movil")
-
-//? Funcion para agregar objetos al arregl
-const gameList = []
-const createGameList = (game)=>{
-  gameList.push(game)
-}
-createGameList(game1)
-createGameList(game2)
-createGameList(game3)
-createGameList(game4)
-createGameList(game5)
-createGameList(game6)
-createGameList(game7)
-createGameList(game8)
-createGameList(game9)
- 
-/* console.log(gameList) */
 
 //? Funcion recibe un array - Itera el array con forEach y si no existe el elemento se agrega - Devuelve un nuevo array solo con los generos sin repetir.
 const getGameGenders = (games) => {
@@ -147,8 +118,8 @@ const setGameGenders = (genres)=>{
   })
 }
 //?Llamo mi funcion y le mando una funcion
-setGameGenders(getGameGenders(gameList)) //! Cuando cargue la pagina
-
+//SE LLAMA EN FUNCION FETCH
+//setGameGenders(getGameGenders(gameList)) //! Cuando cargue la pagina
 
 //? Recibo un arreglo de objetos, itero el array y genero uno nuevo solo con la propiedad plataformas
 const getGamePlatform = (games) => {
@@ -173,7 +144,8 @@ const setGamePlatforms = (platforms)=>{
   })
 }
 //? Llamo a mi funcion y mando otra 
-setGamePlatforms(getGamePlatform(gameList))
+//SE LLAMA EN FUNCION FETCH
+//setGamePlatforms(getGamePlatform(gameList))
 
 //? Agregar listener a btns del carrito
 const addListenerCar = () =>{
@@ -207,8 +179,8 @@ const setGameCards = (games)=>{
   })
   addListenerCar()
 }
-
-setGameCards(gameList) //! Cuando cargue la pagina
+//SE LLAMA EN FUNCION FETCH
+//setGameCards(gameList) //! Cuando cargue la pagina
 
 //? Eventos change de filtros, que llama a funcion para aplicar los filtros
 const filtersListener = () => {
@@ -216,7 +188,7 @@ const filtersListener = () => {
   let platformFilter = document.querySelector("#platformFilter")
   genreFilter.addEventListener('change',() => applyFilter())
   platformFilter.addEventListener('change',() => applyFilter())
-  console.log("Evento change de filters")
+  //console.log("Evento change de filters")
 }
 filtersListener() //! Aplicacion de filtros
 
@@ -261,9 +233,9 @@ const gamesNoFound = ()=>{
 //? Valida estatus si es true retorna el ID del juego
 const addToCar = (evnt) => {
   loginStatusValidation().then((status) => {
-    console.log(evnt.target.attributes)
+    //console.log(evnt.target.attributes)
     let gameId = evnt.target.attributes['data-id'].value -1
-    status === true && (createGameCar(gameId)  ,console.log(gameId) )    
+    status === true && (createGameCar(gameId))    
   }).catch(() => swal.fire(msjErrorSweetAlert("Error","Para agregar al carrigo debe iniciar sesion","warning")))
 }
 
@@ -291,7 +263,7 @@ const printCar = () =>{
   carModalBody.innerHTML=''
   let carItem,price = 0
   gameCarArray.forEach(game => {
-    console.log(game)
+    //console.log(game)
     carItem = `<article id="${game.id}" class="col-12 d-flex flex-row justify-content-evenly text-center align-items-center">
     <img src="${game.thumbnail}" alt="${game.title}" class="col-4">
     <h3 class="col-4 h-100">${game.title}</h3>
