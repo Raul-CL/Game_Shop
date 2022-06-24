@@ -1,0 +1,83 @@
+[
+    {
+        "id": 1,
+        "title": "Dauntless",
+        "price": 0,
+        "thumbnail": "https://www.freetogame.com/g/1/thumbnail.jpg",
+        "description": "A free-to-play, co-op action RPG with gameplay similar to Monster Hunter.",
+        "genre": "MMORPG",
+        "platform": "Nintendo Switch"
+    },
+    {
+        "id": 2,
+        "title": "World of Tanks",
+        "price": 250,
+        "thumbnail": "https://www.freetogame.com/g/2/thumbnail.jpg",
+        "description": "If you like blowing up tanks, with a quick and intense game style you will love this game!",
+        "genre": "Action",
+        "platform": "Nintendo Switch"
+    },
+    {
+        "id": 3,
+        "title": "Warframe",
+        "price": 0,
+        "thumbnail": "https://www.freetogame.com/g/3/thumbnail.jpg",
+        "description": "A cooperative free-to-play third person online action shooter set in an stunning sci-fi world. ",
+        "genre": "Shooter",
+        "platform": "PC (Windows)"
+    },
+    {
+        "id": 4,
+        "title": "CRSED: F.O.A.D.",
+        "price": 300,
+        "thumbnail": "https://www.freetogame.com/g/4/thumbnail.jpg",
+        "description": "Take the battle royale genre and add  mystical powers and you have CRSED: F.O.A.D. (Aka Cuisine Royale: Second Edition)",
+        "genre": "Shooter",
+        "platform": "PC (Windows)"
+    },
+    {
+        "id": 5,
+        "title": "Crossout",
+        "price": 770,
+        "thumbnail": "https://www.freetogame.com/g/5/thumbnail.jpg",
+        "description": "A post-apocalyptic MMO vehicle combat game! ",
+        "genre": "Action",
+        "platform": "XBox"
+    },
+    {
+        "id": 6,
+        "title": "Blade and Soul",
+        "price": 0,
+        "thumbnail": "https://www.freetogame.com/g/6/thumbnail.jpg",
+        "description": "A free-to-play martial arts MMORPG that tasks players with learning combination attacks.",
+        "genre": "Strategy",
+        "platform": "XBox"
+    },
+    {
+        "id": 7,
+        "title": "Armored Warfare",
+        "price": 550,
+        "thumbnail": "https://www.freetogame.com/g/7/thumbnail.jpg",
+        "description": "A modern team-based MMO tank game from Obsidian Entertainment.",
+        "genre": "Shooter",
+        "platform": "PS5"
+    },
+    {
+        "id": 8,
+        "title": "Trove",
+        "price": 200,
+        "thumbnail": "https://www.freetogame.com/g/8/thumbnail.jpg",
+        "description": "A free to play Sandbox massively multiplayer online role-playing game! ",
+        "genre": "MMORPG",
+        "platform": "PS5"
+    },
+    {
+        "id": 10,
+        "title": "ArcheAge",
+        "price": 50,
+        "thumbnail": "https://www.freetogame.com/g/10/thumbnail.jpg",
+        "description": "A free-to-play, hybrid fantasy/sandbox MMORPG brought to you by Trion Worlds.",
+        "genre": "Strategy",
+        "platform": "Movil"
+    }
+]

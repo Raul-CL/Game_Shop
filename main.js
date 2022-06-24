@@ -98,6 +98,7 @@ class Game{
 }
 
 //? Object Game
+
 const game1 = new Game(1,"Dauntless",0,"https://www.freetogame.com/g/1/thumbnail.jpg","A free-to-play, co-op action RPG with gameplay similar to Monster Hunter.","MMORPG","Nintendo Switch")
 const game2 = new Game(2,"World of Tanks",250,"https://www.freetogame.com/g/2/thumbnail.jpg","If you like blowing up tanks, with a quick and intense game style you will love this game!","Action","Nintendo Switch")
 const game3 = new Game(3,"Warframe",0,"https://www.freetogame.com/g/3/thumbnail.jpg","A cooperative free-to-play third person online action shooter set in an stunning sci-fi world. ","Shooter","PC (Windows)")
