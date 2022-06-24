@@ -47,6 +47,7 @@
     </header>
     
     <main class="col-12">
+        
         <!--! FILTROS  -->
         <!-- <div class="container container__filter">
             <section id="filters">
@@ -64,12 +65,12 @@
               <!--! Filters  -->
               <section id="" class="col-10 d-flex justify-content-around ">
                 <div class="col-3 mt-3">
-                  <select class="form-select" id="platformFilter" aria-label="Default select example">
-                    <option value="0" selected >All plataform</option>
+                  <select class="form-select bg-dark text-light" id="platformFilter" aria-label="Default select example">
+                    <option value="0" selected id="test" >All plataform</option>
                   </select>
                 </div>
                 <div class="col-3 mt-3">
-                  <select class="form-select" id="genreFilter" aria-label="Default select example">
+                  <select class="form-select bg-dark text-light" id="genreFilter" aria-label="Default select example">
                     <option value="0" selected >All Genere</option>
                   </select>
                 </div>
@@ -158,8 +159,13 @@
             </div>
         </div>
         <!--! BS MODAL  -->
-
+        <div class="d-flex justify-content-center d-none" id="spinner">
+            <div class="spinner-border text-success" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
         <section id="gameCardsContainer">
+            
             <!--!Test Card  -->
             <!-- <article class="gameCard">
                 <img class="gameCard__thumbnail" src="./img/js.png" alt="...">

@@ -47,7 +47,6 @@ const setloggedMenu = () =>{
   loggedMenu.classList.contains('d-none') &&
     loggedMenu.classList.remove('d-none')
   localStorage.setItem("logged","true")
-  
 }
 
 //? Cierra la sesion del usuario y regresa botones
@@ -85,6 +84,9 @@ window.addEventListener('load',menuValidation)
 
 let gameList 
 const pedidoAPI = async () => {
+  let spinner = document.querySelector("#spinner")
+  spinner.classList.remove('d-none')
+
   const response = await fetch('./data/dataGame.json') //Pasa a ser sincronico
   const data = await response.json()
   gameList = data
@@ -93,6 +95,8 @@ const pedidoAPI = async () => {
   setGameGenders(getGameGenders(gameList))
   setGamePlatforms(getGamePlatform(gameList))
   setGameCards(gameList)
+  
+  spinner.classList.add('d-none')
 }
 pedidoAPI()
 
