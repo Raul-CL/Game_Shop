@@ -78,7 +78,7 @@ const menuValidation = () =>{
     status === true ? (setloggedMenu(), removeLoginMenu())
     : console.log("cuenta no logeada")
   }).catch((error) => {
-    console.log(error)
+    console.log(error, "Cuenta no logeada")
   })
 } 
 window.addEventListener('load',menuValidation)
