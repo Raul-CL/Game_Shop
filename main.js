@@ -236,7 +236,8 @@ const gamesNoFound = ()=>{
 
 //? Valida estatus si es true retorna el ID del juego
 const addToCar = (evnt) => {
-  loginStatusValidation().then((status) => {
+  loginStatusValidation()
+  .then((status) => {
     //console.log(evnt.target.attributes)
     let gameId = evnt.target.attributes['data-id'].value -1
     status === true && (createGameCar(gameId))    
@@ -246,7 +247,7 @@ const addToCar = (evnt) => {
 //? Agrega juegos al carrito
 const gameCarArray = []
 const createGameCar = (id) =>{
-  //console.log(gameList[id])
+  console.log(gameList[id])
   gameCarArray.length < 1
   ? (gameCarArray.push(gameList[id]),
     printCar(gameCarArray),
