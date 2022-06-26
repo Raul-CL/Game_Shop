@@ -12,5 +12,5 @@ const Users = [
   new User ("Laura Garza","laura.garza","qwe123","laurita.garza@gmail.com"),
   new User ("Administrador", "admin", "123", "admin@gmail.com"),
 ]
-console.log(Users)
+//console.log(Users)
 

@@ -5,12 +5,12 @@ let logIn = () => {
   let loginModalClose = document.querySelector("#loginModalClose")
   let accountFound = Users.filter(account => account.account == userAccount && account.password == userPassword)
   if (accountFound.length > 0){
-    let [{account = "test",password = "test",email = "test"}] = accountFound 
+    //let [{account = "test",password = "test",email = "test"}] = accountFound 
     swal.fire(msjErrorSweetAlert("Exito","Cuenta y contraseña correcta","success"),
     setTimeout(() => {loginModalClose.click()}, 1200),
+    setLocalStorageAccount(...accountFound)),
     removeLoginMenu(),
-    setloggedMenu(),
-    setLocalStorageAccount([account,password,email]))
+    setloggedMenu()
   }else swal.fire(msjErrorSweetAlert("Error","Cuenta o contraseña incorrecta","error"))
 }
 
@@ -30,8 +30,17 @@ const setLocalStorageAccount = (account) =>{
 const getLocalStorageAccount = () =>{
   let account = localStorage.getItem("account")
   //console.log(account)
-  return account
+  return JSON.parse(account)
 }
+
+const setDataProfileCard = () =>{
+  const {name,account,password,email} = getLocalStorageAccount()
+  document.querySelector("#profileName").value = name
+  document.querySelector("#profileAccount").value = account
+  document.querySelector("#profilePassword").value = password
+  document.querySelector("#profileEmail").value = email
+}
+
 
 //? Cambiar botones por datos de usuario
 const removeLoginMenu = () =>{
@@ -47,6 +56,7 @@ const setloggedMenu = () =>{
   loggedMenu.classList.contains('d-none') &&
     loggedMenu.classList.remove('d-none')
   localStorage.setItem("logged","true")
+  setDataProfileCard()
 }
 
 //? Cierra la sesion del usuario y regresa botones

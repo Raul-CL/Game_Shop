@@ -132,6 +132,7 @@
             </div>
         </div>
         <!--? PERFIL   -->
+        <!--  -->
         <div class="modal fade" id="profile" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content bg-dark text-light">
@@ -142,13 +143,23 @@
                     <div class="modal-body" id="profileBody">
                         <!--! Card Modal Test  -->
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="">Nombre</span>
-                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <span class="input-group-text">Nombre</span>
+                            <input type="text" id="profileName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled >
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Cuenta</span>
+                            <input type="text" id="profileAccount" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Contraseña</span>
+                            <input type="password" id="profilePassword" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
                         </div>
                           
                         <div class="input-group mb-3">
                             <span class="input-group-text">@</span>
-                            <input type="text" class="form-control" name="email" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" id="profileEmail" class="form-control" name="email" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" disabled>
                         </div>
                     </div>
                     <div class="modal-footer">
