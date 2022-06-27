@@ -13,4 +13,3 @@ const Users = [
   new User ("Administrador", "admin", "123", "admin@gmail.com"),
 ]
 //console.log(Users)
-
