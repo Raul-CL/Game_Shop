@@ -79,6 +79,8 @@ main{
     width: 100%;
     font-size: 1.5em;
     text-align: center;
+    margin-top: .5rem;
+    margin-bottom: .25rem ;
 }
 .gameCard__description{
     font-size: 1em;
