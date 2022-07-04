@@ -131,9 +131,6 @@ const setGameGenders = (genres)=>{
     genreFilter.innerHTML  += innerHTMLSelect
   })
 }
-//?Llamo mi funcion y le mando una funcion
-//SE LLAMA EN FUNCION FETCH
-//setGameGenders(getGameGenders(gameList)) //! Cuando cargue la pagina
 
 //? Recibo un arreglo de objetos, itero el array y genero uno nuevo solo con la propiedad plataformas
 const getGamePlatform = (games) => {
@@ -157,9 +154,6 @@ const setGamePlatforms = (platforms)=>{
     platformFilter.innerHTML  += innerHTMLSelect
   })
 }
-//? Llamo a mi funcion y mando otra 
-//SE LLAMA EN FUNCION FETCH
-//setGamePlatforms(getGamePlatform(gameList))
 
 //? Agregar listener a btns del carrito
 const addListenerCar = () =>{
@@ -193,8 +187,6 @@ const setGameCards = (games)=>{
   })
   addListenerCar()
 }
-//SE LLAMA EN FUNCION FETCH
-//setGameCards(gameList) //! Cuando cargue la pagina
 
 //? Eventos change de filtros, que llama a funcion para aplicar los filtros
 const filtersListener = () => {
@@ -307,4 +299,19 @@ const empyCar = () =>{
 }
 btnEmpyCar.addEventListener("click", empyCar)
 
-
+//? Confirmar compra
+const btnConfirmPurchase = document.querySelector('#btnConfirmPurchase')
+const confirmPurchase = (e) =>{
+  console.log(e)
+  const carPrice = document.querySelector("#carPrice")
+  console.log(carPrice)
+  swal.fire(msjConfirmSweetAlert("Comfirmar compra",`Realizara una compra por ${carPrice.innerHTML}`,"question","Comprar")).then((result) => {
+    if (result.isConfirmed) {
+      successAction.fire({title: 'Compra realizada'})
+      carModalBody.innerHTML = ''
+      carPrice.innerHTML='$0' 
+      gameCarArray.length = 0
+    }
+  })
+}
+btnConfirmPurchase.addEventListener('click', confirmPurchase )
